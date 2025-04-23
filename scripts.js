@@ -16,10 +16,10 @@ const tabWords = [
   "route",
 ];
 
-const randomIndex = Math.floor(Math.random() * tabWords.length); // Génère un index aléatoire pour sélectionner un mot dans le tableau tabWords.
+const randomIndex = Math.floor(Math.random() * tabWords.length); // Génère un index entier aléatoire dans le tableau tabWords.
 console.log(randomIndex);
 
-const wordToGuess = tabWords[randomIndex]; // Utilise l’index aléatoire pour récupérer le mot à deviner depuis le tableau tabWords.
+const wordToGuess = tabWords[randomIndex]; // Utilise l’index entier aléatoire pour récupérer le mot à deviner depuis le tableau tabWords.
 console.log(wordToGuess);
 
 let index = 0;
