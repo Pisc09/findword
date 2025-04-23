@@ -29,18 +29,27 @@ let letterStock = []; // Les lettres seront stockées ici.
 const regex = /^[a-zA-Z]$/;
 
 const titleH1 = document.querySelector("h1");
-const sectionDiv = document.createElement("div");
+const divWord1 = document.createElement("div");
+const divWord2 = document.createElement("div");
 
-titleH1.insertAdjacentElement("afterend", sectionDiv);
+titleH1.insertAdjacentElement("afterend", divWord1);
+divWord1.insertAdjacentElement("afterend", divWord2);
 
 for (let i = 0; i < wordToGuess.length; i++) {
-  const typedLetter = document.createElement("span");
-  typedLetter.classList.add("letter-box");
-  sectionDiv.appendChild(typedLetter);
+  const spanWord1 = document.createElement("span");
+  spanWord1.classList.add("letter-box");
+  divWord1.appendChild(spanWord1);
+
+  const spanWord2 = document.createElement("span");
+  spanWord2.classList.add("letter-box");
+  divWord2.appendChild(spanWord2);
 }
 
-const spans = sectionDiv.querySelectorAll("span");
-console.log(spans);
+const spansWord1 = divWord1.querySelectorAll("span");
+console.log(spansWord1);
+
+const spansWord2 = divWord2.querySelectorAll("span");
+console.log(spansWord2);
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
@@ -49,7 +58,7 @@ document.addEventListener("keydown", (event) => {
 
     if (enteredWord.length === wordToGuess.length) {
       if (enteredWord === wordToGuess) {
-        console.log("Bravo");
+        console.log("Bravo, vous avez trouvé le mot caché");
       } else {
         console.log("Dommage ! Le mot à deviner était : " + wordToGuess);
       }
@@ -62,7 +71,8 @@ document.addEventListener("keydown", (event) => {
     letterStock.pop();
     if (index > 0) {
       index--;
-      spans[index].textContent = "";
+      spansWord1[index].textContent = "";
+      spansWord2[index].textContent = "";
     }
     console.log(letterStock);
   } else if (regex.test(event.key)) {
@@ -70,11 +80,14 @@ document.addEventListener("keydown", (event) => {
       letterStock.push(event.key);
       console.log(letterStock);
       if (event.key === wordToGuess[letterStock.length - 1]) {
-        spans[index].setAttribute("class", "letter-box correct-letter");
+        spansWord1[index].setAttribute("class", "letter-box correct-letter");
+        spansWord2[index].setAttribute("class", "letter-box correct-letter");
       } else {
-        spans[index].setAttribute("class", "letter-box incorrect-letter");
+        spansWord1[index].setAttribute("class", "letter-box incorrect-letter");
+        spansWord2[index].setAttribute("class", "letter-box incorrect-letter");
       }
-      spans[index].textContent = event.key;
+      spansWord1[index].textContent = event.key;
+      spansWord2[index].textContent = event.key;
       index++;
     }
   } else {
